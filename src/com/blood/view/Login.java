@@ -6,6 +6,7 @@
 package com.blood.view;
 
 import java.awt.HeadlessException;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.sql.*;
 import javax.swing.*;
@@ -30,7 +31,7 @@ public class Login extends javax.swing.JFrame {
         super("Login");
         initComponents();
         database();
-
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("blood.png")));
     }
 
     public void buyer_new() {

@@ -5,6 +5,7 @@
  */
 package com.blood.view;
 
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,6 +24,7 @@ public class Loading extends javax.swing.JFrame implements Runnable {
         super("Loading");
         initComponents();
         th = new Thread((Runnable) this);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("blood.png")));
     }
 
     /**

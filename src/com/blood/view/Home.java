@@ -8,6 +8,7 @@ import com.blood.view.sell.*;
 import com.blood.view.buy.*;
 import javax.swing.JInternalFrame;
 import com.blood.view.help.About;
+import java.awt.Toolkit;
 
 /**
  *
@@ -16,7 +17,9 @@ import com.blood.view.help.About;
 public class Home extends javax.swing.JFrame {
     
     public Home() {
+        super("Blood Bank Management Software");
         initComponents();
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("blood.png")));
     }
     
     private void allclose() {
@@ -184,7 +187,7 @@ public class Home extends javax.swing.JFrame {
         );
         desktopPaneLayout.setVerticalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         desktopPane.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -195,6 +198,7 @@ public class Home extends javax.swing.JFrame {
         menu_user.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
 
         menuItem_log_out.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        menuItem_log_out.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/logout.png"))); // NOI18N
         menuItem_log_out.setMnemonic('o');
         menuItem_log_out.setText("Log Out");
         menuItem_log_out.addActionListener(new java.awt.event.ActionListener() {
@@ -206,6 +210,7 @@ public class Home extends javax.swing.JFrame {
 
         exitMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         exitMenuItem.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        exitMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/exit.png"))); // NOI18N
         exitMenuItem.setMnemonic('x');
         exitMenuItem.setText("Exit");
         exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -223,6 +228,7 @@ public class Home extends javax.swing.JFrame {
 
         menuItem_donor_new.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         menuItem_donor_new.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        menuItem_donor_new.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/add_students.png"))); // NOI18N
         menuItem_donor_new.setText("New Seller");
         menuItem_donor_new.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -232,6 +238,7 @@ public class Home extends javax.swing.JFrame {
         menu_donor.add(menuItem_donor_new);
 
         menuItem_donor_edit.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        menuItem_donor_edit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/edit.png"))); // NOI18N
         menuItem_donor_edit.setMnemonic('y');
         menuItem_donor_edit.setText("Edit Seller");
         menuItem_donor_edit.addActionListener(new java.awt.event.ActionListener() {
@@ -242,6 +249,7 @@ public class Home extends javax.swing.JFrame {
         menu_donor.add(menuItem_donor_edit);
 
         menuItem_donor_list.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        menuItem_donor_list.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/list.png"))); // NOI18N
         menuItem_donor_list.setMnemonic('y');
         menuItem_donor_list.setText("Seller List");
         menuItem_donor_list.addActionListener(new java.awt.event.ActionListener() {
@@ -258,6 +266,7 @@ public class Home extends javax.swing.JFrame {
 
         menuItem_new_customer.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         menuItem_new_customer.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        menuItem_new_customer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/add_students.png"))); // NOI18N
         menuItem_new_customer.setText("New Buyer");
         menuItem_new_customer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -267,6 +276,7 @@ public class Home extends javax.swing.JFrame {
         menu_customer.add(menuItem_new_customer);
 
         menuItem_edit_customer.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        menuItem_edit_customer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/edit.png"))); // NOI18N
         menuItem_edit_customer.setText("Edit Buyer");
         menuItem_edit_customer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -276,6 +286,7 @@ public class Home extends javax.swing.JFrame {
         menu_customer.add(menuItem_edit_customer);
 
         menuItem_customer_list.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        menuItem_customer_list.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/list.png"))); // NOI18N
         menuItem_customer_list.setText("Buyer List");
         menuItem_customer_list.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -292,6 +303,7 @@ public class Home extends javax.swing.JFrame {
 
         menuItem_blood_setting.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         menuItem_blood_setting.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        menuItem_blood_setting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/setting.png"))); // NOI18N
         menuItem_blood_setting.setMnemonic('c');
         menuItem_blood_setting.setText("Blood Setting");
         menuItem_blood_setting.addActionListener(new java.awt.event.ActionListener() {
@@ -302,6 +314,7 @@ public class Home extends javax.swing.JFrame {
         menu_blood.add(menuItem_blood_setting);
 
         menuItem_blood_list.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        menuItem_blood_list.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/list.png"))); // NOI18N
         menuItem_blood_list.setMnemonic('c');
         menuItem_blood_list.setText("Blood List");
         menuItem_blood_list.addActionListener(new java.awt.event.ActionListener() {
@@ -317,6 +330,7 @@ public class Home extends javax.swing.JFrame {
         menu_sell.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
 
         menuItem_sell.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        menuItem_sell.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/Buy.png"))); // NOI18N
         menuItem_sell.setText("Blood Sell");
         menuItem_sell.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -326,6 +340,7 @@ public class Home extends javax.swing.JFrame {
         menu_sell.add(menuItem_sell);
 
         menuItem_sell_list.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        menuItem_sell_list.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/list.png"))); // NOI18N
         menuItem_sell_list.setText("Blood Sell List");
         menuItem_sell_list.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -349,6 +364,7 @@ public class Home extends javax.swing.JFrame {
         menu_donate.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
 
         menuItem_buy.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        menuItem_buy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/Buy.png"))); // NOI18N
         menuItem_buy.setText("Blood Buy");
         menuItem_buy.setToolTipText("");
         menuItem_buy.addActionListener(new java.awt.event.ActionListener() {
@@ -359,6 +375,7 @@ public class Home extends javax.swing.JFrame {
         menu_donate.add(menuItem_buy);
 
         menuItem_buy_list.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        menuItem_buy_list.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/list.png"))); // NOI18N
         menuItem_buy_list.setText("Blood Buy List");
         menuItem_buy_list.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -382,6 +399,7 @@ public class Home extends javax.swing.JFrame {
         menu_backup_restore.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
 
         me_backup_restore.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        me_backup_restore.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/Backup.png"))); // NOI18N
         me_backup_restore.setText("Database Backup Or Restore");
         me_backup_restore.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -396,6 +414,7 @@ public class Home extends javax.swing.JFrame {
         menu_help.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
 
         menuItem_about.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        menuItem_about.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/support.png"))); // NOI18N
         menuItem_about.setText("About");
         menuItem_about.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
