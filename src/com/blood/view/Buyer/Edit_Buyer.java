@@ -5,18 +5,35 @@
  */
 package com.blood.view.Buyer;
 
+import java.awt.HeadlessException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Shishir
  */
 public class Edit_Buyer extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form Edit_donor
-     */
+    Connection con;
+    String url;
+
+    PreparedStatement pst;
+    Statement st;
+    ResultSet rs;
+
+    public int select_phone;
+    
     public Edit_Buyer() {
         super("Edit Buyer");
         initComponents();
+        database();
+        txt_search.setText(Integer.toString(select_phone));
     }
 
     /**
@@ -53,8 +70,8 @@ public class Edit_Buyer extends javax.swing.JInternalFrame {
         txt_phone = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         txt_email = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btn_update = new javax.swing.JButton();
+        btn_reset = new javax.swing.JButton();
         btn_buyer = new javax.swing.JButton();
 
         setClosable(true);
@@ -72,6 +89,11 @@ public class Edit_Buyer extends javax.swing.JInternalFrame {
         btn_search.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/LookStudent.png"))); // NOI18N
         btn_search.setToolTipText("Search");
+        btn_search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_searchActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -130,18 +152,23 @@ public class Edit_Buyer extends javax.swing.JInternalFrame {
 
         txt_email.setToolTipText("Neter E-mail");
 
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/add_students.png"))); // NOI18N
-        jButton1.setText("Update");
-        jButton1.setToolTipText("Update");
-
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/refresh.png"))); // NOI18N
-        jButton2.setText("Reset");
-        jButton2.setToolTipText("Reset All");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btn_update.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btn_update.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/add_students.png"))); // NOI18N
+        btn_update.setText("Update");
+        btn_update.setToolTipText("Update");
+        btn_update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btn_updateActionPerformed(evt);
+            }
+        });
+
+        btn_reset.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btn_reset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/refresh.png"))); // NOI18N
+        btn_reset.setText("Reset");
+        btn_reset.setToolTipText("Reset All");
+        btn_reset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_resetActionPerformed(evt);
             }
         });
 
@@ -156,9 +183,9 @@ public class Edit_Buyer extends javax.swing.JInternalFrame {
                     .addComponent(jLabel8)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(11, 11, 11)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_update, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(78, 78, 78)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btn_reset, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
@@ -198,8 +225,8 @@ public class Edit_Buyer extends javax.swing.JInternalFrame {
                     .addComponent(jScrollPane1))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn_update, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_reset, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -284,18 +311,28 @@ public class Edit_Buyer extends javax.swing.JInternalFrame {
         bl.setVisible(true);
     }//GEN-LAST:event_btn_buyerActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btn_resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_resetActionPerformed
         // TODO add your handling code here:
         resetAll();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btn_resetActionPerformed
+
+    private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
+        // TODO add your handling code here:
+        searchEdit();
+    }//GEN-LAST:event_btn_searchActionPerformed
+
+    private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
+        // TODO add your handling code here:
+        update();
+    }//GEN-LAST:event_btn_updateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_buyer;
     private javax.swing.JButton btn_close;
+    private javax.swing.JButton btn_reset;
     private javax.swing.JButton btn_search;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btn_update;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
@@ -312,4 +349,59 @@ public class Edit_Buyer extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txt_phone;
     private javax.swing.JTextField txt_search;
     // End of variables declaration//GEN-END:variables
+
+    public void database() {
+        try {
+            url = "jdbc:ucanaccess://blood.mdb";
+            con = DriverManager.getConnection(url);
+        } catch (Exception e) {
+            System.out.println("Could Not Connect to Database" + e);
+        }
+    }
+
+    private void searchEdit() {
+        try {
+            String sql = "SELECT * FROM buyer WHERE buyer_phone=?";
+
+            pst = con.prepareStatement(sql);
+
+            pst.setString(1, txt_search.getText());
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+                String add1 = rs.getString("buyer_name");
+                txt_name.setText(add1);
+
+                String add2 = rs.getString("buyer_phone");
+                txt_phone.setText(add2);
+
+                String add3 = rs.getString("buyer_email");
+                txt_email.setText(add3);
+
+                String add4 = rs.getString("buyer_address");
+                txt_address.setText(add4);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+
+    private void update() {
+        int p = JOptionPane.showConfirmDialog(null, "Do you want to Update?", "Update", JOptionPane.YES_NO_OPTION);
+        if (p == 0) {
+            try {
+                String v0 = txt_name.getText();
+                String v1 = txt_email.getText();
+                String v2 = txt_phone.getText();
+                String v3 = txt_address.getText();
+
+                String sql1 = "UPDATE buyer SET buyer_name='" + v0 + "', buyer_phone='" + v2 + "', buyer_email='" + v1 + "', buyer_address='" + v3 + "' WHERE buyer_phone ='" + v2 + "'";
+                pst = con.prepareStatement(sql1);
+                pst.execute();
+                JOptionPane.showMessageDialog(null, "Buyer Update Ok");
+            } catch (SQLException | HeadlessException e) {
+                JOptionPane.showMessageDialog(null, "Your data is Not insert! \nPlese Fill Up Correctly...");
+            }
+        }
+    }
 }

@@ -23,7 +23,7 @@ public class Loading extends javax.swing.JFrame implements Runnable {
     public Loading() {
         super("Loading");
         initComponents();
-        th = new Thread((Runnable) this);
+        th = new Thread((Runnable) this); 
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("blood.png")));
     }
 
@@ -41,7 +41,7 @@ public class Loading extends javax.swing.JFrame implements Runnable {
 
     public void run() {
         try {
-            for(int i = 0; i <= 200; i++) {
+            for (int i = 0; i <= 200; i++) {
                 s = s + 1;
                 int m = loadingBar.getMaximum();
                 int v = loadingBar.getValue();
@@ -70,6 +70,7 @@ public class Loading extends javax.swing.JFrame implements Runnable {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 102, 102));
@@ -118,7 +119,7 @@ public class Loading extends javax.swing.JFrame implements Runnable {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(748, 252));
+        setSize(new java.awt.Dimension(730, 205));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -126,7 +127,7 @@ public class Loading extends javax.swing.JFrame implements Runnable {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-       
+
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

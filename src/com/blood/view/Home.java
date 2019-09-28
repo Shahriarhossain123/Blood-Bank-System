@@ -15,13 +15,13 @@ import java.awt.Toolkit;
  * @author Shishir
  */
 public class Home extends javax.swing.JFrame {
-    
+
     public Home() {
         super("Blood Bank Management Software");
         initComponents();
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("blood.png")));
     }
-    
+
     private void allclose() {
         for (JInternalFrame jfin : desktopPane.getAllFrames()) {
             jfin.dispose();
@@ -649,15 +649,11 @@ public class Home extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        
         //</editor-fold>
 
         /* Create and display the form */

@@ -4,11 +4,29 @@
  * and open the template in the editor.
  */
 package com.blood.view.Seller;
+
+import java.awt.HeadlessException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Shishir
  */
 public class Edit_seller extends javax.swing.JInternalFrame {
+    
+    Connection con;
+    String url;
+    
+    PreparedStatement pst;
+    Statement st;
+    ResultSet rs;
+    public int select_phone;
 
     /**
      * Creates new form Edit_donor
@@ -16,16 +34,18 @@ public class Edit_seller extends javax.swing.JInternalFrame {
     public Edit_seller() {
         super("Edit Seller");
         initComponents();
+        database();
+        txt_search.setText(Integer.toString(select_phone));
     }
-
-    private void reset(){
+    
+    private void reset() {
         txt_name.setText(null);
         txt_address.setText(null);
         txt_phone.setText(null);
         txt_email.setText(null);
         txt_search.setText(null);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -77,6 +97,11 @@ public class Edit_seller extends javax.swing.JInternalFrame {
         btn_search.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/LookStudent.png"))); // NOI18N
         btn_search.setToolTipText("Search");
+        btn_search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_searchActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -336,8 +361,13 @@ public class Edit_seller extends javax.swing.JInternalFrame {
 
     private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
         // TODO add your handling code here:
+        update();
     }//GEN-LAST:event_btn_updateActionPerformed
 
+    private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
+        // TODO add your handling code here:
+        searchEdit();
+    }//GEN-LAST:event_btn_searchActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_cdonor_list;
@@ -367,4 +397,71 @@ public class Edit_seller extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txt_phone;
     private javax.swing.JTextField txt_search;
     // End of variables declaration//GEN-END:variables
+
+    public void database() {
+        try {
+            url = "jdbc:ucanaccess://blood.mdb";
+            con = DriverManager.getConnection(url);
+        } catch (Exception e) {
+            System.out.println("Could Not Connect to Database" + e);
+        }
+    }
+    
+    private void searchEdit() {
+        try {
+            String sql = "SELECT * FROM seller WHERE seller_phone=?";
+            
+            pst = con.prepareStatement(sql);
+            pst.setString(1, txt_search.getText());
+            rs = pst.executeQuery();
+            
+            if (rs.next()) {
+                String add1 = rs.getString("seller_name");
+                txt_name.setText(add1);
+                
+                String add2 = rs.getString("seller_phone");
+                txt_phone.setText(add2);
+                
+                String add3 = rs.getString("seller_email");
+                txt_email.setText(add3);
+                
+                String add4 = rs.getString("seller_address");
+                txt_address.setText(add4);
+                
+                String add5 = rs.getString("seller_age");
+                combo_age.setSelectedItem(add5);
+                
+                String add6 = rs.getString("seller_gender");
+                combo_gender.setSelectedItem(add6);
+                
+                String add7 = rs.getString("blood_type");
+                combo_type.setSelectedItem(add7);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
+    private void update() {
+        int p = JOptionPane.showConfirmDialog(null, "Do you want to Update?", "Update", JOptionPane.YES_NO_OPTION);
+        if (p == 0) {
+            try {
+                String v0 = txt_name.getText();
+                String v1 = txt_email.getText();
+                String v2 = txt_phone.getText();
+                String v3 = txt_address.getText();
+                String v4 = (String) combo_age.getSelectedItem();
+                String v5 = (String) combo_gender.getSelectedItem();
+                String v6 = (String) combo_type.getSelectedItem();
+                
+                String sql1 = "UPDATE seller SET seller_name='" + v0 + "', seller_age='" + v4 + "', seller_gender='" + v5 + "', blood_type='"
+                        + v6 + "', seller_phone='" + v2 + "', seller_email='" + v1 + "', seller_address='" + v3 + "' WHERE buyer_phone ='" + v2 + "'";
+                pst = con.prepareStatement(sql1);
+                pst.execute();
+                JOptionPane.showMessageDialog(null, "Buyer Update Ok");
+            } catch (SQLException | HeadlessException e) {
+                JOptionPane.showMessageDialog(null, "Your data is Not insert! \nPlese Fill Up Correctly...");
+            }
+        }
+    }
 }

@@ -241,10 +241,10 @@ public class New_seller extends javax.swing.JInternalFrame {
                 .addGap(201, 201, 201)
                 .addComponent(btn_close, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(167, 167, 167)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(187, 187, 187)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGap(161, 161, 161))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -325,21 +325,16 @@ public class New_seller extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     public void database() {
-
         try {
-
             url = "jdbc:ucanaccess://blood.mdb";
             con = DriverManager.getConnection(url);
-
         } catch (Exception e) {
             System.out.println("Could Not Connect to Database" + e);
         }
     }
 
     public void seller_new() {
-
         try {
-
             String bname = txt_name.getText();
             String phone = txt_phone.getText();
             String email = txt_email.getText();
@@ -355,11 +350,8 @@ public class New_seller extends javax.swing.JInternalFrame {
             st.executeUpdate(sql);
             con.commit();
             JOptionPane.showMessageDialog(null, "Successful Save");
-
         } catch (HeadlessException | NumberFormatException | SQLException e) {
             JOptionPane.showMessageDialog(null, e);
-
         }
-
     }
 }

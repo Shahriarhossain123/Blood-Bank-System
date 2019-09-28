@@ -5,6 +5,7 @@
  */
 package com.blood.view.Buyer;
 
+import java.awt.HeadlessException;
 import java.text.MessageFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -24,9 +25,9 @@ public class Buyer_list extends javax.swing.JInternalFrame {
     Statement st;
     ResultSet rs;
 
-    /**
-     * Creates new form Donor_list
-     */
+    int tabrow;
+    public int Table_click_phone;
+
     public Buyer_list() {
         super("Buyer List");
         initComponents();
@@ -69,8 +70,10 @@ public class Buyer_list extends javax.swing.JInternalFrame {
         btn_update = new javax.swing.JButton();
         btn_new = new javax.swing.JButton();
         btn_print = new javax.swing.JButton();
+        btn_reload = new javax.swing.JButton();
 
         setClosable(true);
+        setTitle("Buyer List");
 
         jPanel1.setBackground(new java.awt.Color(255, 102, 102));
 
@@ -98,17 +101,32 @@ public class Buyer_list extends javax.swing.JInternalFrame {
                 "Name", "Phone Number", "E-mail", "Address"
             }
         ));
+        table_buyer_list.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                table_buyer_listMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(table_buyer_list);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel2.setText("Search:");
 
         txt_search.setToolTipText("");
+        txt_search.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_searchKeyReleased(evt);
+            }
+        });
 
         btn_search.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btn_search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/LookStudent.png"))); // NOI18N
         btn_search.setText("Search");
         btn_search.setToolTipText("Search");
+        btn_search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_searchActionPerformed(evt);
+            }
+        });
 
         btn_delete.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btn_delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/delete.png"))); // NOI18N
@@ -150,6 +168,15 @@ public class Buyer_list extends javax.swing.JInternalFrame {
             }
         });
 
+        btn_reload.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btn_reload.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/refresh.png"))); // NOI18N
+        btn_reload.setText("Reload");
+        btn_reload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_reloadActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -169,6 +196,8 @@ public class Buyer_list extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btn_print)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_reload)
+                        .addGap(18, 18, 18)
                         .addComponent(btn_new)
                         .addGap(18, 18, 18)
                         .addComponent(btn_update)
@@ -200,7 +229,8 @@ public class Buyer_list extends javax.swing.JInternalFrame {
                     .addComponent(btn_delete)
                     .addComponent(btn_update)
                     .addComponent(btn_new)
-                    .addComponent(btn_print))
+                    .addComponent(btn_print)
+                    .addComponent(btn_reload))
                 .addContainerGap())
         );
 
@@ -225,6 +255,7 @@ public class Buyer_list extends javax.swing.JInternalFrame {
 
     private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
         // TODO add your handling code here:
+        deleteData();
     }//GEN-LAST:event_btn_deleteActionPerformed
 
     private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
@@ -248,12 +279,36 @@ public class Buyer_list extends javax.swing.JInternalFrame {
         buyerexport();
     }//GEN-LAST:event_btn_printActionPerformed
 
+    private void btn_reloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reloadActionPerformed
+        // TODO add your handling code here:
+        updateTable();
+    }//GEN-LAST:event_btn_reloadActionPerformed
+
+    private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
+        // TODO add your handling code here:
+        searchTable();
+    }//GEN-LAST:event_btn_searchActionPerformed
+
+    private void txt_searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_searchKeyReleased
+        // TODO add your handling code here:
+        searchTable();
+    }//GEN-LAST:event_txt_searchKeyReleased
+
+    private void table_buyer_listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_buyer_listMouseClicked
+        // TODO add your handling code here:
+        tabrow = table_buyer_list.getSelectedRow();
+        Table_click_phone = (int) (table_buyer_list.getModel().getValueAt(tabrow, 2));
+        Edit_Buyer ed = new Edit_Buyer();
+        ed.select_phone = Table_click_phone;
+    }//GEN-LAST:event_table_buyer_listMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_close;
     private javax.swing.JButton btn_delete;
     private javax.swing.JButton btn_new;
     private javax.swing.JButton btn_print;
+    private javax.swing.JButton btn_reload;
     private javax.swing.JButton btn_search;
     private javax.swing.JButton btn_update;
     private javax.swing.JLabel jLabel1;
@@ -265,21 +320,16 @@ public class Buyer_list extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     public void database() {
-
         try {
-
             url = "jdbc:ucanaccess://blood.mdb";
             con = DriverManager.getConnection(url);
-
         } catch (Exception e) {
-            System.out.println("Could Not Connect to Database" + e);
+            System.out.println(e);
         }
     }
 
     private void updateTable() {
-
         try {
-
             String sql = "Select ID, buyer_name, buyer_phone, buyer_email, buyer_address from buyer Order By ID";
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
@@ -291,4 +341,30 @@ public class Buyer_list extends javax.swing.JInternalFrame {
         }
     }
 
+    private void searchTable() {
+        try {
+            String sql = "SELECT ID, buyer_name, buyer_phone, buyer_email, buyer_address FROM buyer WHERE buyer_phone LIKE ?";
+            pst = con.prepareStatement(sql);
+            pst.setString(1, txt_search.getText());
+            rs = pst.executeQuery();
+            table_buyer_list.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error TO collection data from Student Table");
+        }
+    }
+
+    private void deleteData() {
+        try {
+            String sql = "Delete from buyer where buyer_phone = '" + Table_click_phone + "'";
+
+            st = con.createStatement();
+            st.executeUpdate(sql);
+            con.commit();
+            updateTable();
+            JOptionPane.showMessageDialog(null, "Buyer Deleted.");
+
+        } catch (SQLException | HeadlessException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
 }
