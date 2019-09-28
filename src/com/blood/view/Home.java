@@ -1,6 +1,5 @@
 package com.blood.view;
 
-import com.blood.view.backupORrestore.BackupORrestore;
 import com.blood.view.blood.*;
 import com.blood.view.Buyer.*;
 import com.blood.view.Seller.*;
@@ -41,7 +40,6 @@ public class Home extends javax.swing.JFrame {
         btn_donor = new javax.swing.JButton();
         btn_customer = new javax.swing.JButton();
         btn_sell = new javax.swing.JButton();
-        btn_backup_restore = new javax.swing.JButton();
         btn_blood_list = new javax.swing.JButton();
         btn_logout = new javax.swing.JButton();
         btn_buy = new javax.swing.JButton();
@@ -65,13 +63,9 @@ public class Home extends javax.swing.JFrame {
         menu_sell = new javax.swing.JMenu();
         menuItem_sell = new javax.swing.JMenuItem();
         menuItem_sell_list = new javax.swing.JMenuItem();
-        menuItem_sell_edit = new javax.swing.JMenuItem();
         menu_donate = new javax.swing.JMenu();
         menuItem_buy = new javax.swing.JMenuItem();
         menuItem_buy_list = new javax.swing.JMenuItem();
-        menuItem_buy_edit = new javax.swing.JMenuItem();
-        menu_backup_restore = new javax.swing.JMenu();
-        me_backup_restore = new javax.swing.JMenuItem();
         menu_help = new javax.swing.JMenu();
         menuItem_about = new javax.swing.JMenuItem();
 
@@ -99,14 +93,6 @@ public class Home extends javax.swing.JFrame {
         btn_sell.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_sellActionPerformed(evt);
-            }
-        });
-
-        btn_backup_restore.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        btn_backup_restore.setText("Backup or Restore");
-        btn_backup_restore.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_backup_restoreActionPerformed(evt);
             }
         });
 
@@ -150,8 +136,6 @@ public class Home extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_buy)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_backup_restore)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_blood_list)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_logout)
@@ -165,7 +149,6 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(btn_donor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_customer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_sell, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_backup_restore, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_blood_list, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_logout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_buy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -349,15 +332,6 @@ public class Home extends javax.swing.JFrame {
         });
         menu_sell.add(menuItem_sell_list);
 
-        menuItem_sell_edit.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        menuItem_sell_edit.setText("Blood Sell Edit");
-        menuItem_sell_edit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItem_sell_editActionPerformed(evt);
-            }
-        });
-        menu_sell.add(menuItem_sell_edit);
-
         menuBar.add(menu_sell);
 
         menu_donate.setText("Blood Buy");
@@ -384,31 +358,7 @@ public class Home extends javax.swing.JFrame {
         });
         menu_donate.add(menuItem_buy_list);
 
-        menuItem_buy_edit.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        menuItem_buy_edit.setText("Blood Buy Edit");
-        menuItem_buy_edit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItem_buy_editActionPerformed(evt);
-            }
-        });
-        menu_donate.add(menuItem_buy_edit);
-
         menuBar.add(menu_donate);
-
-        menu_backup_restore.setText("Backup/Restore");
-        menu_backup_restore.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-
-        me_backup_restore.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        me_backup_restore.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/Backup.png"))); // NOI18N
-        me_backup_restore.setText("Database Backup Or Restore");
-        me_backup_restore.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                me_backup_restoreActionPerformed(evt);
-            }
-        });
-        menu_backup_restore.add(me_backup_restore);
-
-        menuBar.add(menu_backup_restore);
 
         menu_help.setText("Help");
         menu_help.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -553,26 +503,6 @@ public class Home extends javax.swing.JFrame {
         c2.setVisible(true);
     }//GEN-LAST:event_menuItem_edit_customerActionPerformed
 
-    private void me_backup_restoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_me_backup_restoreActionPerformed
-        // TODO add your handling code here:
-        allclose();
-        BackupORrestore br1 = new BackupORrestore();
-        this.desktopPane.add(br1);
-        br1.setVisible(true);
-    }//GEN-LAST:event_me_backup_restoreActionPerformed
-
-    private void btn_backup_restoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_backup_restoreActionPerformed
-        // TODO add your handling code here:
-        allclose();
-        BackupORrestore br1 = new BackupORrestore();
-        this.desktopPane.add(br1);
-        br1.setVisible(true);
-    }//GEN-LAST:event_btn_backup_restoreActionPerformed
-
-    private void menuItem_buy_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_buy_editActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuItem_buy_editActionPerformed
-
     private void btn_blood_listActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_blood_listActionPerformed
         // TODO add your handling code here:
         allclose();
@@ -604,10 +534,6 @@ public class Home extends javax.swing.JFrame {
         this.desktopPane.add(bs);
         bs.setVisible(true);
     }//GEN-LAST:event_btn_sellActionPerformed
-
-    private void menuItem_sell_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_sell_editActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuItem_sell_editActionPerformed
 
     private void menuItem_sell_listActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_sell_listActionPerformed
         // TODO add your handling code here:
@@ -665,7 +591,6 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_backup_restore;
     private javax.swing.JButton btn_blood_list;
     private javax.swing.JButton btn_buy;
     private javax.swing.JButton btn_customer;
@@ -676,13 +601,11 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JMenuItem me_backup_restore;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem menuItem_about;
     private javax.swing.JMenuItem menuItem_blood_list;
     private javax.swing.JMenuItem menuItem_blood_setting;
     private javax.swing.JMenuItem menuItem_buy;
-    private javax.swing.JMenuItem menuItem_buy_edit;
     private javax.swing.JMenuItem menuItem_buy_list;
     private javax.swing.JMenuItem menuItem_customer_list;
     private javax.swing.JMenuItem menuItem_donor_edit;
@@ -692,9 +615,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItem_log_out;
     private javax.swing.JMenuItem menuItem_new_customer;
     private javax.swing.JMenuItem menuItem_sell;
-    private javax.swing.JMenuItem menuItem_sell_edit;
     private javax.swing.JMenuItem menuItem_sell_list;
-    private javax.swing.JMenu menu_backup_restore;
     private javax.swing.JMenu menu_blood;
     private javax.swing.JMenu menu_customer;
     private javax.swing.JMenu menu_donate;

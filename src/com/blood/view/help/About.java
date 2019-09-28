@@ -5,6 +5,17 @@
  */
 package com.blood.view.help;
 
+import java.awt.Cursor;
+import java.awt.Desktop;
+import java.awt.Label;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Shishir
@@ -17,6 +28,15 @@ public class About extends javax.swing.JInternalFrame {
     public About() {
         super("About");
         initComponents();
+        
+        label_Git.setText("<html> GitHub : <a href=\"\">https://github.com/Shahriarhossain123</a></html>");
+        label_Git.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        
+        label_linkedin.setText("<html> Linkedin : <a href=\"\">https://www.linkedin.com/in/shahriar-hossain-dev</a></html>");
+        label_linkedin.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        
+        label_stackoverflow.setText("<html> Stackoverflow : <a href=\"\">https://stackoverflow.com/users/5962337/shahriar-hossain</a></html>");
+        label_stackoverflow.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }
 
     /**
@@ -31,13 +51,18 @@ public class About extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btn_close = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        label_Git = new javax.swing.JLabel();
+        label_linkedin = new javax.swing.JLabel();
+        label_stackoverflow = new javax.swing.JLabel();
 
         setClosable(true);
 
-        jPanel1.setBackground(new java.awt.Color(255, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
         jLabel1.setBackground(new java.awt.Color(255, 0, 51));
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Blood Bank Manager System");
         jLabel1.setToolTipText("");
@@ -51,6 +76,26 @@ public class About extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel2.setText("Blood Bank Manager System is made in Java SE. Develop By MD. Shahriar");
+
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel3.setText("Hossain. ");
+
+        label_Git.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        label_Git.setText("GitHub: ");
+        label_Git.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_GitMouseClicked(evt);
+            }
+        });
+
+        label_linkedin.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        label_linkedin.setText("linkedin");
+
+        label_stackoverflow.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        label_stackoverflow.setText("stackoverflow");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -58,19 +103,37 @@ public class About extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btn_close)))
+                        .addGap(373, 373, 373)
+                        .addComponent(btn_close, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(label_Git)
+                            .addComponent(label_linkedin)
+                            .addComponent(label_stackoverflow))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
-                .addComponent(btn_close)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(label_Git)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(label_linkedin)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(label_stackoverflow)
+                .addGap(90, 90, 90)
+                .addComponent(btn_close, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -93,10 +156,29 @@ public class About extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_btn_closeActionPerformed
 
+    private void label_GitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_GitMouseClicked
+        // TODO add your handling code here:
+        try {
+            try {
+                Desktop.getDesktop().browse(new URI("https://github.com/Shahriarhossain123"));
+            } catch (IOException ex) {
+                Logger.getLogger(label_Git.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (URISyntaxException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }//GEN-LAST:event_label_GitMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_close;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel label_Git;
+    private javax.swing.JLabel label_linkedin;
+    private javax.swing.JLabel label_stackoverflow;
     // End of variables declaration//GEN-END:variables
+
 }

@@ -5,10 +5,12 @@
  */
 package com.blood.view.sell;
 
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.MessageFormat;
 import javax.swing.JOptionPane;
@@ -27,6 +29,8 @@ public class Sell_list extends javax.swing.JInternalFrame {
     PreparedStatement pst;
     Statement st;
     ResultSet rs;
+    int tabrow;
+    int Table_click_phone;
 
     /**
      * Creates new form Donor_list
@@ -67,7 +71,6 @@ public class Sell_list extends javax.swing.JInternalFrame {
         txt_search = new javax.swing.JTextField();
         btn_search = new javax.swing.JButton();
         btn_delete = new javax.swing.JButton();
-        btn_update = new javax.swing.JButton();
         btn_print = new javax.swing.JButton();
         btn_Sell_new = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -103,6 +106,11 @@ public class Sell_list extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        table_sell_list.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                table_sell_listMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(table_sell_list);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -112,14 +120,20 @@ public class Sell_list extends javax.swing.JInternalFrame {
         btn_search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/LookStudent.png"))); // NOI18N
         btn_search.setText("Search");
         btn_search.setToolTipText("Search Blood");
+        btn_search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_searchActionPerformed(evt);
+            }
+        });
 
         btn_delete.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btn_delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/delete.png"))); // NOI18N
         btn_delete.setText("Delete");
-
-        btn_update.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        btn_update.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/update.png"))); // NOI18N
-        btn_update.setText("Update");
+        btn_delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_deleteActionPerformed(evt);
+            }
+        });
 
         btn_print.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btn_print.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/print.png"))); // NOI18N
@@ -152,10 +166,20 @@ public class Sell_list extends javax.swing.JInternalFrame {
         btn_search1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/search.png"))); // NOI18N
         btn_search1.setText("Search");
         btn_search1.setToolTipText("Search");
+        btn_search1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_search1ActionPerformed(evt);
+            }
+        });
 
         btn_reload.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btn_reload.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/refresh.png"))); // NOI18N
         btn_reload.setText("Reload");
+        btn_reload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_reloadActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -172,15 +196,13 @@ public class Sell_list extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(btn_print, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(24, 24, 24)
-                                .addComponent(btn_reload)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(113, 113, 113)
+                                .addComponent(btn_reload, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
                                 .addComponent(btn_Sell_new, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btn_update, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(18, 18, 18)
                                 .addComponent(btn_delete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(18, 18, 18)
                                 .addComponent(btn_close, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jScrollPane1)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -219,10 +241,9 @@ public class Sell_list extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_close, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_delete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_update, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_print, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_Sell_new, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_reload))
+                    .addComponent(btn_reload, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -258,6 +279,32 @@ public class Sell_list extends javax.swing.JInternalFrame {
         bs.setVisible(true);
     }//GEN-LAST:event_btn_Sell_newActionPerformed
 
+    private void table_sell_listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_sell_listMouseClicked
+        // TODO add your handling code here:tabrow = table_buy.getSelectedRow();
+        Table_click_phone = (int) (table_sell_list.getModel().getValueAt(tabrow, 5));
+
+    }//GEN-LAST:event_table_sell_listMouseClicked
+
+    private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
+        // TODO add your handling code here:
+        deleteData();
+    }//GEN-LAST:event_btn_deleteActionPerformed
+
+    private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
+        // TODO add your handling code here:
+        searchTable();
+    }//GEN-LAST:event_btn_searchActionPerformed
+
+    private void btn_search1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_search1ActionPerformed
+        // TODO add your handling code here:
+        search_type();
+    }//GEN-LAST:event_btn_search1ActionPerformed
+
+    private void btn_reloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reloadActionPerformed
+        // TODO add your handling code here:
+        updateTable();
+    }//GEN-LAST:event_btn_reloadActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Sell_new;
@@ -267,7 +314,6 @@ public class Sell_list extends javax.swing.JInternalFrame {
     private javax.swing.JButton btn_reload;
     private javax.swing.JButton btn_search;
     private javax.swing.JButton btn_search1;
-    private javax.swing.JButton btn_update;
     private javax.swing.JComboBox<String> combo_type;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -301,6 +347,49 @@ public class Sell_list extends javax.swing.JInternalFrame {
 
         } catch (Exception e) {
             System.out.println(e);
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+
+    private void searchTable() {
+
+        try {
+            String sql = "SELECT ID, seller_name, seller_age, seller_gender, blood_type, seller_phone, blood_quantity, blood_price FROM blood_sell WHERE seller_phone LIKE ?";
+            pst = con.prepareStatement(sql);
+            pst.setString(1, txt_search.getText());
+            rs = pst.executeQuery();
+            table_sell_list.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error TO collection data from Student Table");
+        }
+    }
+
+    private void search_type() {
+        String type = (String) combo_type.getSelectedItem();
+
+        //search only depertment
+        try {
+            String sql = "SELECT ID, seller_name, seller_age, seller_gender, blood_type, seller_phone, blood_quantity, blood_price FROM blood_sell WHERE blood_type LIKE ?";
+            pst = con.prepareStatement(sql);
+            pst.setString(1, (String) combo_type.getSelectedItem());
+            rs = pst.executeQuery();
+            table_sell_list.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error TO collection data from Student Table By search");
+        }
+    }
+
+    private void deleteData() {
+        try {
+            String sql = "Delete from blood_sell where seller_phone = '" + Table_click_phone + "'";
+
+            st = con.createStatement();
+            st.executeUpdate(sql);
+            con.commit();
+            updateTable();
+            JOptionPane.showMessageDialog(null, "Blood Sell Deleted.");
+
+        } catch (SQLException | HeadlessException e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }

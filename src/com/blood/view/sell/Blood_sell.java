@@ -5,6 +5,7 @@
  */
 package com.blood.view.sell;
 
+import com.blood.view.Seller.Seller_list;
 import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -106,6 +107,7 @@ public class Blood_sell extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         txt_name2 = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
+        combo_age = new javax.swing.JComboBox<String>();
         jLabel23 = new javax.swing.JLabel();
         combo_gender = new javax.swing.JComboBox<String>();
         jLabel24 = new javax.swing.JLabel();
@@ -119,7 +121,6 @@ public class Blood_sell extends javax.swing.JInternalFrame {
         txt_email = new javax.swing.JTextField();
         btn_reset = new javax.swing.JButton();
         btn_save = new javax.swing.JButton();
-        combo_age = new javax.swing.JComboBox<String>();
         jPanel12 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         combo_type1 = new javax.swing.JComboBox<String>();
@@ -133,6 +134,7 @@ public class Blood_sell extends javax.swing.JInternalFrame {
         btn_update = new javax.swing.JButton();
         btn_print = new javax.swing.JButton();
         btn_sell_list = new javax.swing.JButton();
+        btn_seller_list = new javax.swing.JButton();
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Blood Seller", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 14))); // NOI18N
 
@@ -378,6 +380,11 @@ public class Blood_sell extends javax.swing.JInternalFrame {
         btn_search.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/LookStudent.png"))); // NOI18N
         btn_search.setToolTipText("Search");
+        btn_search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_searchActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel_searchLayout = new javax.swing.GroupLayout(panel_search);
         panel_search.setLayout(panel_searchLayout);
@@ -410,6 +417,9 @@ public class Blood_sell extends javax.swing.JInternalFrame {
 
         jLabel22.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel22.setText("Age:");
+
+        combo_age.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Age", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40" }));
+        combo_age.setToolTipText("Select Age");
 
         jLabel23.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel23.setText("Gender:");
@@ -459,9 +469,6 @@ public class Blood_sell extends javax.swing.JInternalFrame {
                 btn_saveActionPerformed(evt);
             }
         });
-
-        combo_age.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Age", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40" }));
-        combo_age.setToolTipText("Select Age");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -669,6 +676,11 @@ public class Blood_sell extends javax.swing.JInternalFrame {
         btn_update.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btn_update.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/update.png"))); // NOI18N
         btn_update.setText("Update");
+        btn_update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_updateActionPerformed(evt);
+            }
+        });
 
         btn_print.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btn_print.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/print.png"))); // NOI18N
@@ -681,6 +693,15 @@ public class Blood_sell extends javax.swing.JInternalFrame {
         btn_sell_list.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_sell_listActionPerformed(evt);
+            }
+        });
+
+        btn_seller_list.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btn_seller_list.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/list.png"))); // NOI18N
+        btn_seller_list.setText("Seller List");
+        btn_seller_list.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_seller_listActionPerformed(evt);
             }
         });
 
@@ -706,6 +727,8 @@ public class Blood_sell extends javax.swing.JInternalFrame {
                                 .addGap(75, 75, 75))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btn_sell_list)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_seller_list)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_close)))
                 .addContainerGap())
@@ -728,7 +751,8 @@ public class Blood_sell extends javax.swing.JInternalFrame {
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_close)
-                    .addComponent(btn_sell_list))
+                    .addComponent(btn_sell_list)
+                    .addComponent(btn_seller_list, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -778,6 +802,24 @@ public class Blood_sell extends javax.swing.JInternalFrame {
         blood_price_search();
     }//GEN-LAST:event_combo_type1MousePressed
 
+    private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
+        // TODO add your handling code here:
+        searchEdit();
+    }//GEN-LAST:event_btn_searchActionPerformed
+
+    private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
+        // TODO add your handling code here:
+        update();
+    }//GEN-LAST:event_btn_updateActionPerformed
+
+    private void btn_seller_listActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_seller_listActionPerformed
+        // TODO add your handling code here:
+        Seller_list dlo = new Seller_list();
+        this.getDesktopPane().add(dlo);
+        dispose();
+        dlo.setVisible(true);
+    }//GEN-LAST:event_btn_seller_listActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Add;
@@ -789,6 +831,7 @@ public class Blood_sell extends javax.swing.JInternalFrame {
     private javax.swing.JButton btn_search;
     private javax.swing.JButton btn_search2;
     private javax.swing.JButton btn_sell_list;
+    private javax.swing.JButton btn_seller_list;
     private javax.swing.JButton btn_update;
     private javax.swing.JButton butt_print;
     private javax.swing.JButton butt_update;
@@ -850,12 +893,9 @@ public class Blood_sell extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     public void database() {
-
         try {
-
             url = "jdbc:ucanaccess://blood.mdb";
             con = DriverManager.getConnection(url);
-
         } catch (Exception e) {
             System.out.println("Could Not Connect to Database" + e);
         }
@@ -936,5 +976,66 @@ public class Blood_sell extends javax.swing.JInternalFrame {
         bloodQ = Integer.parseInt(txt_quantity1.getText());
         bloodPrice = pblood * bloodQ;
         label_price1.setText("Totel Price: " + bloodPrice);
+    }
+
+    private void searchEdit() {
+        try {
+            String sql = "SELECT * FROM seller WHERE seller_phone=?";
+            
+            pst = con.prepareStatement(sql);
+            pst.setString(1, txt_search.getText());
+            rs = pst.executeQuery();
+            
+            if (rs.next()) {
+                String add1 = rs.getString("seller_name");
+                txt_name2.setText(add1);
+                
+                String add2 = rs.getString("seller_phone");
+                txt_phone3.setText(add2);
+                
+                String add3 = rs.getString("seller_email");
+                txt_email.setText(add3);
+                
+                String add4 = rs.getString("seller_address");
+                txt_address2.setText(add4);
+                
+                String add5 = rs.getString("seller_age");
+                combo_age.setSelectedItem(add5);
+                
+                String add6 = rs.getString("seller_gender");
+                combo_gender.setSelectedItem(add6);
+                
+                String add7 = rs.getString("blood_type");
+                combo_type3.setSelectedItem(add7);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
+    private void update() {
+        int p = JOptionPane.showConfirmDialog(null, "Do you want to Update?", "Update", JOptionPane.YES_NO_OPTION);
+        if (p == 0) {
+            try {
+                String v0 = txt_name2.getText();
+                String v1 = txt_email.getText();
+                String v2 = txt_phone3.getText();
+                String v3 = txt_address2.getText();
+                String v4 = (String) combo_type1.getSelectedItem();
+                String v5 = txt_quantity1.getText();
+                int v7 = bloodPrice;
+                String v8 = txt_search.getText();
+                String v9 = (String) combo_gender.getSelectedItem();
+                String v10 = (String) combo_age.getSelectedItem(); 
+
+                String sql1 = "UPDATE blood_sell SET seller_name='" + v0 + "', seller_age='" + v10 + "', seller_gender='" + v9 + "', seller_phone='" + v2 + "', seller_email='" + v1
+                        + "', seller_address='" + v3 + "', blood_type='" + v4 + "', blood_quantity='" + v5 + "', blood_price='" + v7 + "' WHERE seller_phone ='" + v8 + "'";
+                pst = con.prepareStatement(sql1);
+                pst.execute();
+                JOptionPane.showMessageDialog(null, "Blood Sell Update Ok");
+            } catch (SQLException | HeadlessException e) {
+                JOptionPane.showMessageDialog(null, "Your data is Not insert! \nPlese Fill Up Correctly...");
+            }
+        }
     }
 }

@@ -5,6 +5,7 @@
  */
 package com.blood.view.buy;
 
+import com.blood.view.Buyer.Buyer_list;
 import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -19,13 +20,13 @@ import javax.swing.JOptionPane;
  * @author shahr
  */
 public class Blood_Buy extends javax.swing.JInternalFrame {
-
+    
     Connection con;
     String url;
     int pblood;
     int bloodQ;
     int bloodPrice;
-
+    
     PreparedStatement pst;
     Statement st;
     ResultSet rs;
@@ -36,16 +37,16 @@ public class Blood_Buy extends javax.swing.JInternalFrame {
     public Blood_Buy() {
         super("Blood Buy");
         initComponents();
-        database();
+        database(); 
     }
-
+    
     void reset() {
         txt_name.setText(null);
         txt_address.setText(null);
         txt_phone.setText(null);
         txt_email.setText(null);
     }
-
+    
     private void resetAll() {
         txt_quantity.setText(null);
         combo_type.setSelectedIndex(0);
@@ -92,6 +93,8 @@ public class Blood_Buy extends javax.swing.JInternalFrame {
         btn_buy = new javax.swing.JButton();
         btn_update = new javax.swing.JButton();
         btn_print = new javax.swing.JButton();
+        btn_buyer_list = new javax.swing.JButton();
+        btn_blood_buy_list = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 102, 102));
         setClosable(true);
@@ -194,7 +197,7 @@ public class Blood_Buy extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(5, 5, 5)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE))
                     .addComponent(txt_email))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,6 +220,11 @@ public class Blood_Buy extends javax.swing.JInternalFrame {
         btn_search.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/LookStudent.png"))); // NOI18N
         btn_search.setToolTipText("Search");
+        btn_search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_searchActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -370,10 +378,35 @@ public class Blood_Buy extends javax.swing.JInternalFrame {
         btn_update.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btn_update.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/update.png"))); // NOI18N
         btn_update.setText("Update");
+        btn_update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_updateActionPerformed(evt);
+            }
+        });
 
         btn_print.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btn_print.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/print.png"))); // NOI18N
         btn_print.setText("Print");
+
+        btn_buyer_list.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btn_buyer_list.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/list.png"))); // NOI18N
+        btn_buyer_list.setText("Buyer List");
+        btn_buyer_list.setToolTipText("Buyer List");
+        btn_buyer_list.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buyer_listActionPerformed(evt);
+            }
+        });
+
+        btn_blood_buy_list.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btn_blood_buy_list.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/list.png"))); // NOI18N
+        btn_blood_buy_list.setText("Blood Buy List");
+        btn_blood_buy_list.setToolTipText("Blood Buy List");
+        btn_blood_buy_list.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_blood_buy_listActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -382,9 +415,12 @@ public class Blood_Buy extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(563, 563, 563)
-                        .addComponent(btn_close, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btn_blood_buy_list)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_buyer_list)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_close))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -394,10 +430,10 @@ public class Blood_Buy extends javax.swing.JInternalFrame {
                                 .addGap(1, 1, 1))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(100, 100, 100)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btn_update)
-                                    .addComponent(btn_print, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btn_buy, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btn_print, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btn_buy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btn_update, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -406,18 +442,24 @@ public class Blood_Buy extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(btn_buy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(btn_update, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(btn_print, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(36, 36, 36)))
-                .addGap(11, 11, 11)
-                .addComponent(btn_close, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                        .addGap(35, 35, 35)))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_close, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btn_buyer_list)
+                            .addComponent(btn_blood_buy_list))))
                 .addContainerGap())
         );
 
@@ -458,10 +500,38 @@ public class Blood_Buy extends javax.swing.JInternalFrame {
         blood_price_search();
     }//GEN-LAST:event_combo_typeMousePressed
 
+    private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
+        // TODO add your handling code here:
+        searchEdit();
+    }//GEN-LAST:event_btn_searchActionPerformed
+
+    private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
+        // TODO add your handling code here:
+        update();
+    }//GEN-LAST:event_btn_updateActionPerformed
+
+    private void btn_buyer_listActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buyer_listActionPerformed
+        // TODO add your handling code here:
+        Buyer_list bl = new Buyer_list();
+        this.getDesktopPane().add(bl);
+        dispose();
+        bl.setVisible(true);
+    }//GEN-LAST:event_btn_buyer_listActionPerformed
+
+    private void btn_blood_buy_listActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_blood_buy_listActionPerformed
+        // TODO add your handling code here:
+        Buy_list bl = new Buy_list();
+        this.getDesktopPane().add(bl);
+        dispose();
+        bl.setVisible(true);
+    }//GEN-LAST:event_btn_blood_buy_listActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_add;
+    private javax.swing.JButton btn_blood_buy_list;
     private javax.swing.JButton btn_buy;
+    private javax.swing.JButton btn_buyer_list;
     private javax.swing.JButton btn_close;
     private javax.swing.JButton btn_print;
     private javax.swing.JButton btn_reset;
@@ -493,37 +563,34 @@ public class Blood_Buy extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     public void database() {
-
         try {
-
             url = "jdbc:ucanaccess://blood.mdb";
             con = DriverManager.getConnection(url);
-
         } catch (Exception e) {
             System.out.println("Could Not Connect to Database" + e);
         }
     }
-
+    
     public void buyer_new() {
         try {
             String bname = txt_name.getText();
             String phone = txt_phone.getText();
             String email = txt_email.getText();
             String address = txt_address.getText();
-
+            
             String sql = "Insert Into buyer (buyer_name, buyer_phone, buyer_email, buyer_address) "
                     + "Values('" + bname + "','" + phone + "','" + email + "','" + address + "')";
-
+            
             st = con.createStatement();
             st.executeUpdate(sql);
             con.commit();
             JOptionPane.showMessageDialog(null, "Successful Save");
-
+            
         } catch (HeadlessException | NumberFormatException | SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-
+    
     public void buy_new_all() {
         try {
             String bname = txt_name.getText();
@@ -533,42 +600,92 @@ public class Blood_Buy extends javax.swing.JInternalFrame {
             String bq = txt_quantity.getText();
             String btype = (String) combo_type.getSelectedItem();
             int bp = bloodPrice;
-
+            
             String sql = "Insert Into blood_buy (buyer_name, buyer_phone, buyer_email, buyer_address, blood_type, blood_quantity, blood_price) "
                     + "Values('" + bname + "','" + phone + "','" + email + "','" + address + "','" + btype + "','" + bq + "','" + bp + "')";
-
+            
             st = con.createStatement();
             st.executeUpdate(sql);
             con.commit();
             JOptionPane.showMessageDialog(null, "Successful Save");
-
+            
         } catch (HeadlessException | NumberFormatException | SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-
+    
     private void blood_price_search() {
         try {
             String sql = "SELECT * FROM blood WHERE blood_type=?";
-
+            
             pst = con.prepareStatement(sql);
             pst.setString(1, (String) combo_type.getSelectedItem());
             rs = pst.executeQuery();
-
+            
             if (rs.next()) {
                 String add1 = rs.getString("blood_price");
                 txt_price.setText(add1);
                 pblood = Integer.parseInt(add1);
             }
-
         } catch (SQLException | NumberFormatException e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-
+    
     public void buy_add() {
         bloodQ = Integer.parseInt(txt_quantity.getText());
         bloodPrice = pblood * bloodQ;
         label_price.setText("Totel Price: " + bloodPrice);
+    }
+    
+    private void searchEdit() {
+        try {
+            String sql = "SELECT * FROM buyer WHERE buyer_phone=?";
+
+            pst = con.prepareStatement(sql);
+
+            pst.setString(1, txt_search.getText());
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+                String add1 = rs.getString("buyer_name");
+                txt_name.setText(add1);
+
+                String add2 = rs.getString("buyer_phone");
+                txt_phone.setText(add2);
+
+                String add3 = rs.getString("buyer_email");
+                txt_email.setText(add3);
+
+                String add4 = rs.getString("buyer_address");
+                txt_address.setText(add4);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
+    private void update() {
+        int p = JOptionPane.showConfirmDialog(null, "Do you want to Update?", "Update", JOptionPane.YES_NO_OPTION);
+        if (p == 0) {
+            try {
+                String v0 = txt_name.getText();
+                String v1 = txt_email.getText();
+                String v2 = txt_phone.getText();
+                String v3 = txt_address.getText();
+                String v4 = (String) combo_type.getSelectedItem();
+                String v5 = txt_quantity.getText();
+                int v7 = bloodPrice;
+                String v8 = txt_search.getText();
+                
+                String sql1 = "UPDATE blood_buy SET buyer_name='" + v0 + "', buyer_phone='" + v2 + "', buyer_email='" + v1
+                        + "', buyer_address='" + v3 + "', blood_type='" + v4 + "', blood_quantity='" + v5 + "', blood_price='" + v7 + "' WHERE buyer_phone ='" + v8 + "'";
+                pst = con.prepareStatement(sql1);
+                pst.execute();
+                JOptionPane.showMessageDialog(null, "Blood Buy Update Ok");
+            } catch (SQLException | HeadlessException e) {
+                JOptionPane.showMessageDialog(null, "Your data is Not insert! \nPlese Fill Up Correctly...");
+            }
+        }
     }
 }

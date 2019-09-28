@@ -44,6 +44,9 @@ public class Edit_seller extends javax.swing.JInternalFrame {
         txt_phone.setText(null);
         txt_email.setText(null);
         txt_search.setText(null);
+        combo_age.setSelectedIndex(0);
+        combo_gender.setSelectedIndex(0);
+        combo_type.setSelectedIndex(0);
     }
 
     /**
@@ -361,7 +364,7 @@ public class Edit_seller extends javax.swing.JInternalFrame {
 
     private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
         // TODO add your handling code here:
-        update();
+        update(); 
     }//GEN-LAST:event_btn_updateActionPerformed
 
     private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
@@ -453,14 +456,15 @@ public class Edit_seller extends javax.swing.JInternalFrame {
                 String v4 = (String) combo_age.getSelectedItem();
                 String v5 = (String) combo_gender.getSelectedItem();
                 String v6 = (String) combo_type.getSelectedItem();
+                String v7 = txt_search.getText();
                 
                 String sql1 = "UPDATE seller SET seller_name='" + v0 + "', seller_age='" + v4 + "', seller_gender='" + v5 + "', blood_type='"
-                        + v6 + "', seller_phone='" + v2 + "', seller_email='" + v1 + "', seller_address='" + v3 + "' WHERE buyer_phone ='" + v2 + "'";
+                        + v6 + "', seller_phone='" + v2 + "', seller_email='" + v1 + "', seller_address='" + v3 + "' WHERE seller_phone ='" + v7 + "'";
                 pst = con.prepareStatement(sql1);
                 pst.execute();
                 JOptionPane.showMessageDialog(null, "Buyer Update Ok");
             } catch (SQLException | HeadlessException e) {
-                JOptionPane.showMessageDialog(null, "Your data is Not insert! \nPlese Fill Up Correctly...");
+                JOptionPane.showMessageDialog(null, "Your data is Not insert! \nPlese Fill Up Correctly..."+e);
             }
         }
     }

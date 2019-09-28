@@ -101,6 +101,8 @@ public class Blood_list extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2"
             }
         ));
+        table_blood_list.setAutoscrolls(false);
+        table_blood_list.setEnabled(false);
         jScrollPane1.setViewportView(table_blood_list);
 
         btn_setting.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
