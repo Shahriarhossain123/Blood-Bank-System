@@ -23,9 +23,11 @@ public class Blood_sell extends javax.swing.JInternalFrame {
 
     Connection con;
     String url;
+
     int pblood;
     int bloodQ;
     int bloodPrice;
+    int brt;
 
     PreparedStatement pst;
     Statement st;
@@ -768,6 +770,7 @@ public class Blood_sell extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         sell_new();
         sell_New_add();
+        reserve();
         resetAll();
         reset();
     }//GEN-LAST:event_btn_buyActionPerformed
@@ -810,6 +813,7 @@ public class Blood_sell extends javax.swing.JInternalFrame {
     private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
         // TODO add your handling code here:
         update();
+        reserve();
     }//GEN-LAST:event_btn_updateActionPerformed
 
     private void btn_seller_listActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_seller_listActionPerformed
@@ -981,30 +985,30 @@ public class Blood_sell extends javax.swing.JInternalFrame {
     private void searchEdit() {
         try {
             String sql = "SELECT * FROM seller WHERE seller_phone=?";
-            
+
             pst = con.prepareStatement(sql);
             pst.setString(1, txt_search.getText());
             rs = pst.executeQuery();
-            
+
             if (rs.next()) {
                 String add1 = rs.getString("seller_name");
                 txt_name2.setText(add1);
-                
+
                 String add2 = rs.getString("seller_phone");
                 txt_phone3.setText(add2);
-                
+
                 String add3 = rs.getString("seller_email");
                 txt_email.setText(add3);
-                
+
                 String add4 = rs.getString("seller_address");
                 txt_address2.setText(add4);
-                
+
                 String add5 = rs.getString("seller_age");
                 combo_age.setSelectedItem(add5);
-                
+
                 String add6 = rs.getString("seller_gender");
                 combo_gender.setSelectedItem(add6);
-                
+
                 String add7 = rs.getString("blood_type");
                 combo_type3.setSelectedItem(add7);
             }
@@ -1012,7 +1016,7 @@ public class Blood_sell extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    
+
     private void update() {
         int p = JOptionPane.showConfirmDialog(null, "Do you want to Update?", "Update", JOptionPane.YES_NO_OPTION);
         if (p == 0) {
@@ -1026,7 +1030,7 @@ public class Blood_sell extends javax.swing.JInternalFrame {
                 int v7 = bloodPrice;
                 String v8 = txt_search.getText();
                 String v9 = (String) combo_gender.getSelectedItem();
-                String v10 = (String) combo_age.getSelectedItem(); 
+                String v10 = (String) combo_age.getSelectedItem();
 
                 String sql1 = "UPDATE blood_sell SET seller_name='" + v0 + "', seller_age='" + v10 + "', seller_gender='" + v9 + "', seller_phone='" + v2 + "', seller_email='" + v1
                         + "', seller_address='" + v3 + "', blood_type='" + v4 + "', blood_quantity='" + v5 + "', blood_price='" + v7 + "' WHERE seller_phone ='" + v8 + "'";
@@ -1036,6 +1040,35 @@ public class Blood_sell extends javax.swing.JInternalFrame {
             } catch (SQLException | HeadlessException e) {
                 JOptionPane.showMessageDialog(null, "Your data is Not insert! \nPlese Fill Up Correctly...");
             }
+        }
+    }
+
+    private void reserve() {
+        int bq = 0;
+
+        try {
+            String sql = "SELECT * FROM blood_reserve WHERE blood_type=?";
+
+            pst = con.prepareStatement(sql);
+            pst.setString(1, (String) combo_type1.getSelectedItem());
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+                bq = rs.getInt("blood_quantity");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+
+        brt = bq + Integer.valueOf(txt_quantity1.getText());
+        String bt = (String) combo_type1.getSelectedItem();
+
+        try {
+            String sql1 = "UPDATE blood_reserve SET blood_quantity='" + brt + "' WHERE blood_type ='" + bt + "'";
+            pst = con.prepareStatement(sql1);
+            pst.execute();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
     }
 }

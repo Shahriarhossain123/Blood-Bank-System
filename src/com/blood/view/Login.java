@@ -51,6 +51,23 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
     }
+    public void blood_new() {
+        try {
+            String bname = "AB-";
+            String bpr = "0";
+
+            String sql = "Insert Into blood_reserve (blood_type, blood_quantity) "
+                    + "Values('" + bname + "','" + bpr + "')";
+
+            st = con.createStatement();
+            st.executeUpdate(sql);
+            con.commit();
+            JOptionPane.showMessageDialog(null, "Successful Save");
+
+        } catch (HeadlessException | NumberFormatException | SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
