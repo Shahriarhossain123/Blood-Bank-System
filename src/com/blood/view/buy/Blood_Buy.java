@@ -28,6 +28,7 @@ public class Blood_Buy extends javax.swing.JInternalFrame {
     int bloodQ;
     int bloodPrice;
     int brt;
+    int bq = 0;
 
     PreparedStatement pst;
     Statement st;
@@ -485,10 +486,11 @@ public class Blood_Buy extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_saveActionPerformed
 
     private void btn_buyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buyActionPerformed
-        // TODO add your handling code here:        
+        // TODO add your handling code here:            
+        reserve();
         buy_new_all();
         buyer_new();
-        reserve();
+
         reset();
         resetAll();
     }//GEN-LAST:event_btn_buyActionPerformed
@@ -694,8 +696,6 @@ public class Blood_Buy extends javax.swing.JInternalFrame {
     }
 
     private void reserve() {
-        int bq = 0;
-
         try {
             String sql = "SELECT * FROM blood_reserve WHERE blood_type=?";
 
@@ -712,7 +712,7 @@ public class Blood_Buy extends javax.swing.JInternalFrame {
 
         brt = bq - Integer.valueOf(txt_quantity.getText());
         String bt = (String) combo_type.getSelectedItem();
-        
+
         if (bq == 0) {
             JOptionPane.showMessageDialog(null, "Blood is not.");
         } else {
