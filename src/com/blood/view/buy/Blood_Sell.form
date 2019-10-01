@@ -598,8 +598,8 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/com/blood/photos/list.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Blood Buy List"/>
-        <Property name="toolTipText" type="java.lang.String" value="Blood Buy List"/>
+        <Property name="text" type="java.lang.String" value="Blood Sell List"/>
+        <Property name="toolTipText" type="java.lang.String" value="Blood Sell List"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_blood_buy_listActionPerformed"/>

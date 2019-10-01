@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  *
  * @author shahr
  */
-public class Blood_Buy extends javax.swing.JInternalFrame {
+public class Blood_Sell extends javax.swing.JInternalFrame {
 
     Connection con;
     String url;
@@ -37,8 +37,8 @@ public class Blood_Buy extends javax.swing.JInternalFrame {
     /**
      * Creates new form Blood_Buy
      */
-    public Blood_Buy() {
-        super("Blood Buy");
+    public Blood_Sell() {
+        super("Blood Sell");
         initComponents();
         database();
         txt_search.setText(null);
@@ -399,8 +399,8 @@ public class Blood_Buy extends javax.swing.JInternalFrame {
 
         btn_blood_buy_list.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btn_blood_buy_list.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/list.png"))); // NOI18N
-        btn_blood_buy_list.setText("Blood Buy List");
-        btn_blood_buy_list.setToolTipText("Blood Buy List");
+        btn_blood_buy_list.setText("Blood Sell List");
+        btn_blood_buy_list.setToolTipText("Blood Sell List");
         btn_blood_buy_list.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_blood_buy_listActionPerformed(evt);
@@ -525,7 +525,7 @@ public class Blood_Buy extends javax.swing.JInternalFrame {
 
     private void btn_blood_buy_listActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_blood_buy_listActionPerformed
         // TODO add your handling code here:
-        Buy_list bl = new Buy_list();
+        Blood_sell_list bl = new Blood_sell_list();
         this.getDesktopPane().add(bl);
         dispose();
         bl.setVisible(true);

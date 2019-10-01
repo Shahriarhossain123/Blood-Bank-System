@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  *
  * @author shahr
  */
-public class Blood_sell extends javax.swing.JInternalFrame {
+public class Blood_Buy extends javax.swing.JInternalFrame {
 
     Connection con;
     String url;
@@ -36,8 +36,8 @@ public class Blood_sell extends javax.swing.JInternalFrame {
     /**
      * Creates new form Blood_sell_new
      */
-    public Blood_sell() {
-        super("Blood Sell");
+    public Blood_Buy() {
+        super("Blood Buy");
         initComponents();
         database();
         txt_search.setText(null);
@@ -135,7 +135,7 @@ public class Blood_sell extends javax.swing.JInternalFrame {
         txt_price = new javax.swing.JTextField();
         btn_buy = new javax.swing.JButton();
         btn_update = new javax.swing.JButton();
-        btn_sell_list = new javax.swing.JButton();
+        btn_buy_list = new javax.swing.JButton();
         btn_seller_list = new javax.swing.JButton();
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Blood Seller", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 14))); // NOI18N
@@ -684,13 +684,13 @@ public class Blood_sell extends javax.swing.JInternalFrame {
             }
         });
 
-        btn_sell_list.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        btn_sell_list.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/list.png"))); // NOI18N
-        btn_sell_list.setText("Blood Sell List");
-        btn_sell_list.setToolTipText("Blood Sell List");
-        btn_sell_list.addActionListener(new java.awt.event.ActionListener() {
+        btn_buy_list.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btn_buy_list.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/list.png"))); // NOI18N
+        btn_buy_list.setText("Blood Buy List");
+        btn_buy_list.setToolTipText("Blood Buy List");
+        btn_buy_list.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_sell_listActionPerformed(evt);
+                btn_buy_listActionPerformed(evt);
             }
         });
 
@@ -723,7 +723,7 @@ public class Blood_sell extends javax.swing.JInternalFrame {
                                     .addComponent(btn_buy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(75, 75, 75))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btn_sell_list)
+                        .addComponent(btn_buy_list)
                         .addGap(18, 18, 18)
                         .addComponent(btn_seller_list)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -746,7 +746,7 @@ public class Blood_sell extends javax.swing.JInternalFrame {
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_close)
-                    .addComponent(btn_sell_list)
+                    .addComponent(btn_buy_list)
                     .addComponent(btn_seller_list, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -776,13 +776,13 @@ public class Blood_sell extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btn_buyActionPerformed
 
-    private void btn_sell_listActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sell_listActionPerformed
+    private void btn_buy_listActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buy_listActionPerformed
         // TODO add your handling code here:
-        Sell_list sl = new Sell_list();
+        Blood_buy_list sl = new Blood_buy_list();
         this.getDesktopPane().add(sl);
         dispose();
         sl.setVisible(true);
-    }//GEN-LAST:event_btn_sell_listActionPerformed
+    }//GEN-LAST:event_btn_buy_listActionPerformed
 
     private void btn_resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_resetActionPerformed
         // TODO add your handling code here:
@@ -829,12 +829,12 @@ public class Blood_sell extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Add;
     private javax.swing.JButton btn_buy;
+    private javax.swing.JButton btn_buy_list;
     private javax.swing.JButton btn_close;
     private javax.swing.JButton btn_reset;
     private javax.swing.JButton btn_save;
     private javax.swing.JButton btn_search;
     private javax.swing.JButton btn_search2;
-    private javax.swing.JButton btn_sell_list;
     private javax.swing.JButton btn_seller_list;
     private javax.swing.JButton btn_update;
     private javax.swing.JButton butt_print;
