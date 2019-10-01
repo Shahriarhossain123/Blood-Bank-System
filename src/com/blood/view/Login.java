@@ -31,7 +31,7 @@ public class Login extends javax.swing.JFrame {
         super("Login");
         initComponents();
         database();
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("blood.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("blood.png"))); 
     }
 
     public void buyer_new() {

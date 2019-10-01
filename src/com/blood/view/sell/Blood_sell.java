@@ -40,6 +40,7 @@ public class Blood_sell extends javax.swing.JInternalFrame {
         super("Blood Sell");
         initComponents();
         database();
+        txt_search.setText(null);
     }
 
     private void reset() {
@@ -134,7 +135,6 @@ public class Blood_sell extends javax.swing.JInternalFrame {
         txt_price = new javax.swing.JTextField();
         btn_buy = new javax.swing.JButton();
         btn_update = new javax.swing.JButton();
-        btn_print = new javax.swing.JButton();
         btn_sell_list = new javax.swing.JButton();
         btn_seller_list = new javax.swing.JButton();
 
@@ -684,10 +684,6 @@ public class Blood_sell extends javax.swing.JInternalFrame {
             }
         });
 
-        btn_print.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        btn_print.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/print.png"))); // NOI18N
-        btn_print.setText("Print");
-
         btn_sell_list.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btn_sell_list.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/list.png"))); // NOI18N
         btn_sell_list.setText("Blood Sell List");
@@ -724,7 +720,6 @@ public class Blood_sell extends javax.swing.JInternalFrame {
                                 .addGap(87, 87, 87)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btn_update, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btn_print, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btn_buy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(75, 75, 75))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -743,12 +738,10 @@ public class Blood_sell extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btn_buy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_buy, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(btn_update, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_print, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(163, 163, 163))
+                        .addComponent(btn_update, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                        .addGap(208, 208, 208))
                     .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -768,11 +761,19 @@ public class Blood_sell extends javax.swing.JInternalFrame {
 
     private void btn_buyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buyActionPerformed
         // TODO add your handling code here:
-        sell_new();
-        sell_New_add();
-        reserve();
-        resetAll();
-        reset();
+        if (txt_search.getText() == null) {
+            sell_new();
+            sell_New_add();
+            reserve();
+            resetAll();
+            reset();
+        } else {
+            
+            sell_New_add();
+            reserve();
+            resetAll();
+            reset();
+        }
     }//GEN-LAST:event_btn_buyActionPerformed
 
     private void btn_sell_listActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sell_listActionPerformed
@@ -829,7 +830,6 @@ public class Blood_sell extends javax.swing.JInternalFrame {
     private javax.swing.JButton btn_Add;
     private javax.swing.JButton btn_buy;
     private javax.swing.JButton btn_close;
-    private javax.swing.JButton btn_print;
     private javax.swing.JButton btn_reset;
     private javax.swing.JButton btn_save;
     private javax.swing.JButton btn_search;

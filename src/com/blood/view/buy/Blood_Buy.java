@@ -41,6 +41,7 @@ public class Blood_Buy extends javax.swing.JInternalFrame {
         super("Blood Buy");
         initComponents();
         database();
+        txt_search.setText(null);
     }
 
     void reset() {
@@ -95,7 +96,6 @@ public class Blood_Buy extends javax.swing.JInternalFrame {
         txt_price = new javax.swing.JTextField();
         btn_buy = new javax.swing.JButton();
         btn_update = new javax.swing.JButton();
-        btn_print = new javax.swing.JButton();
         btn_buyer_list = new javax.swing.JButton();
         btn_blood_buy_list = new javax.swing.JButton();
 
@@ -190,7 +190,7 @@ public class Blood_Buy extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(5, 5, 5)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE))
                     .addComponent(txt_name))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -387,10 +387,6 @@ public class Blood_Buy extends javax.swing.JInternalFrame {
             }
         });
 
-        btn_print.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        btn_print.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/print.png"))); // NOI18N
-        btn_print.setText("Print");
-
         btn_buyer_list.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btn_buyer_list.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/blood/photos/list.png"))); // NOI18N
         btn_buyer_list.setText("Buyer List");
@@ -434,7 +430,6 @@ public class Blood_Buy extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(100, 100, 100)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btn_print, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btn_buy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btn_update, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
@@ -452,14 +447,12 @@ public class Blood_Buy extends javax.swing.JInternalFrame {
                         .addComponent(btn_buy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(btn_update, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_print, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(35, 35, 35)))
+                        .addGap(79, 79, 79)))
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_close, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 13, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn_buyer_list)
                             .addComponent(btn_blood_buy_list))))
@@ -486,13 +479,19 @@ public class Blood_Buy extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_saveActionPerformed
 
     private void btn_buyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buyActionPerformed
-        // TODO add your handling code here:            
-        reserve();
-        buy_new_all();
-        buyer_new();
-
-        reset();
-        resetAll();
+        // TODO add your handling code here:       
+        if (txt_search.getText() == null) {
+            buy_new_all();
+            buyer_new();
+            reserve();
+            reset();
+            resetAll();
+        } else {
+            buy_new_all();
+            reserve();
+            reset();
+            resetAll();
+        }
     }//GEN-LAST:event_btn_buyActionPerformed
 
     private void btn_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addActionPerformed
@@ -539,7 +538,6 @@ public class Blood_Buy extends javax.swing.JInternalFrame {
     private javax.swing.JButton btn_buy;
     private javax.swing.JButton btn_buyer_list;
     private javax.swing.JButton btn_close;
-    private javax.swing.JButton btn_print;
     private javax.swing.JButton btn_reset;
     private javax.swing.JButton btn_save;
     private javax.swing.JButton btn_search;

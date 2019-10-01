@@ -16,37 +16,37 @@ import javax.swing.UIManager;
  * @author shahr
  */
 public class DBConnection {
-
+    
     Statement st;
     ResultSet rs;
     Connection con;
     String url;
-
+    
     public DBConnection() {
-
+        
         new Login().setVisible(true);
-
+        
         try {
             url = "jdbc:ucanaccess://blood.mdb";
             con = DriverManager.getConnection(url);
             System.out.println("Database Ok");
-
+            
         } catch (Exception e) {
             System.out.println("Could Not Connect to Database" + e);
         }
-
+        
         try {
             rs.next();
-        } catch (Exception e) {
+        } catch (Exception e) { 
         }
     }
-
+    
     public static void LookAndFeel() {
-
+        
         Properties props = new Properties();
         props.put("logoString", "");
         GraphiteLookAndFeel.setCurrentTheme(props);
-
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");
@@ -55,9 +55,8 @@ public class DBConnection {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
     }
-
+    
     public static void main(String[] args) {
-
         LookAndFeel();
         DBConnection dbConnection = new DBConnection();
     }

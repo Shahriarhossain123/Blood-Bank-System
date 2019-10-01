@@ -299,7 +299,7 @@ public class Buy_list extends javax.swing.JInternalFrame {
     private void table_buyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_buyMouseClicked
         // TODO add your handling code here:
         tabrow = table_buy.getSelectedRow();
-        Table_click_phone = (int) (table_buy.getModel().getValueAt(tabrow, 5));
+        Table_click_phone = (int) (table_buy.getModel().getValueAt(tabrow, 2));
     }//GEN-LAST:event_table_buyMouseClicked
 
     private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
@@ -366,16 +366,16 @@ public class Buy_list extends javax.swing.JInternalFrame {
             rs = pst.executeQuery();
             table_buy.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error TO collection data from Student Table");
+            JOptionPane.showMessageDialog(null, "Error TO collection data from Blood Buy Table");
         }
     }
 
     private void deleteData() {
         try {
-            String sql = "Delete from blood_buy where buyer_phone = '" + Table_click_phone + "'";
+            String sql2 = "Delete from blood_buy where buyer_phone = '" + Table_click_phone + "'";
 
             st = con.createStatement();
-            st.executeUpdate(sql);
+            st.executeUpdate(sql2);
             con.commit();
             updateTable();
             JOptionPane.showMessageDialog(null, "Buy Deleted.");
@@ -396,7 +396,7 @@ public class Buy_list extends javax.swing.JInternalFrame {
             rs = pst.executeQuery();
             table_buy.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error TO collection data from Student Table By search");
+            JOptionPane.showMessageDialog(null, "Error TO collection data from Blood Buy Table By search");
         }
     }
 
