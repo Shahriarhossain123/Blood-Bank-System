@@ -23,7 +23,7 @@ public class Loading extends javax.swing.JFrame implements Runnable {
     public Loading() {
         super("Loading");
         initComponents();
-        th = new Thread((Runnable) this); 
+        th = new Thread((Runnable) this);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("blood.png")));
     }
 
@@ -39,6 +39,7 @@ public class Loading extends javax.swing.JFrame implements Runnable {
         th.start();
     }
 
+    @Override
     public void run() {
         try {
             for (int i = 0; i <= 200; i++) {

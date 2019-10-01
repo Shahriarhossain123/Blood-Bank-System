@@ -761,14 +761,13 @@ public class Blood_Buy extends javax.swing.JInternalFrame {
 
     private void btn_buyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buyActionPerformed
         // TODO add your handling code here:
-        if (txt_search.getText() == null) {
-            sell_new();
+        if (txt_search.getText() == null) {            
             sell_New_add();
             reserve();
             resetAll();
             reset();
         } else {
-            
+            sell_new();
             sell_New_add();
             reserve();
             resetAll();

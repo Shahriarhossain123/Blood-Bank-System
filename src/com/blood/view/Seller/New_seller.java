@@ -19,7 +19,7 @@ public class New_seller extends javax.swing.JInternalFrame {
     ResultSet rs;
 
     public New_seller() {
-        super("New Donor");
+        super("New Seller");
         initComponents();
         database();
     }
