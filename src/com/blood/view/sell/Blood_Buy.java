@@ -588,8 +588,8 @@ public class Blood_Buy extends javax.swing.JInternalFrame {
         combo_type1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "A+", "A-", "B-", "B+", "O+", "O-", "AB+", "AB-" }));
         combo_type1.setToolTipText("Select Blood Type");
         combo_type1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                combo_type1MousePressed(evt);
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                combo_type1MouseEntered(evt);
             }
         });
 
@@ -800,11 +800,6 @@ public class Blood_Buy extends javax.swing.JInternalFrame {
         sell_add();
     }//GEN-LAST:event_btn_AddActionPerformed
 
-    private void combo_type1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_combo_type1MousePressed
-        // TODO add your handling code here:
-        blood_price_search();
-    }//GEN-LAST:event_combo_type1MousePressed
-
     private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
         // TODO add your handling code here:
         searchEdit();
@@ -824,6 +819,10 @@ public class Blood_Buy extends javax.swing.JInternalFrame {
         dlo.setVisible(true);
     }//GEN-LAST:event_btn_seller_listActionPerformed
 
+    private void combo_type1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_combo_type1MouseEntered
+        // TODO add your handling code here:
+        blood_price_search();
+    }//GEN-LAST:event_combo_type1MouseEntered
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Add;

@@ -289,8 +289,8 @@ public class Blood_Sell extends javax.swing.JInternalFrame {
         combo_type.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "A+", "A-", "B-", "B+", "O+", "O-", "AB+", "AB-" }));
         combo_type.setToolTipText("Select Blood Type");
         combo_type.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                combo_typeMousePressed(evt);
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                combo_typeMouseEntered(evt);
             }
         });
 
@@ -481,7 +481,7 @@ public class Blood_Sell extends javax.swing.JInternalFrame {
     private void btn_buyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buyActionPerformed
         // TODO add your handling code here:       
         if (txt_search.getText() == null) {
-            buy_new_all();            
+            buy_new_all();
             reserve();
             reset();
             resetAll();
@@ -498,11 +498,6 @@ public class Blood_Sell extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         buy_add();
     }//GEN-LAST:event_btn_addActionPerformed
-
-    private void combo_typeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_combo_typeMousePressed
-        // TODO add your handling code here:
-        blood_price_search();
-    }//GEN-LAST:event_combo_typeMousePressed
 
     private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
         // TODO add your handling code here:
@@ -530,6 +525,11 @@ public class Blood_Sell extends javax.swing.JInternalFrame {
         dispose();
         bl.setVisible(true);
     }//GEN-LAST:event_btn_blood_buy_listActionPerformed
+
+    private void combo_typeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_combo_typeMouseEntered
+        // TODO add your handling code here:
+        blood_price_search();
+    }//GEN-LAST:event_combo_typeMouseEntered
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
